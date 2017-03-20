@@ -1,0 +1,5 @@
+package: github.com/plattyp/addon
+import:
+- package: github.com/gin-gonic/gin
+  version: ^1.1.4
+- package: github.com/rubenv/sql-migrate

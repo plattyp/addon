@@ -1,0 +1,18 @@
+{
+  "id": "custom-addon",
+  "api": {
+    "config_vars": [ "CUSTOM_ADDON_URL" ],
+    "requires": [],
+    "regions": [ "us", "eu" ],
+    "password": "85b5565db27efac4e88ebe9ba990982d",
+    "sso_salt": "f33dbf8a60484995c8d47d1f0115ee8a",
+    "production": {
+      "base_url": "https://custom-addon.com/heroku/resources",
+      "sso_url": "https://custom-addon.com/sso/login"
+    },
+    "test": {
+      "base_url": "http://localhost:5000/heroku/resources",
+      "sso_url": "http://localhost:5000/sso/login"
+    }
+  }
+}
