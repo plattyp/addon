@@ -24,11 +24,6 @@ func main() {
 
 	router.GET("/", endpoints.Index)
 
-	auth := router.Group("/auth")
-	{
-		auth.POST("/signup", endpoints.Signup)
-	}
-
 	herokuAuthorized := router.Group("/heroku", gin.BasicAuth(gin.Accounts{
 		os.Getenv("HEROKU_USERNAME"): os.Getenv("HEROKU_PASSWORD"),
 	}))
