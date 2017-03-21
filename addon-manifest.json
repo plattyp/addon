@@ -1,5 +1,6 @@
 {
   "id": "custom-addon",
+  "name": "CustomAddon",
   "api": {
     "config_vars": [ "CUSTOM_ADDON_URL" ],
     "requires": [],

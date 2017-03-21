@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"reflect"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -16,24 +17,24 @@ var (
 )
 
 // ValidationErrorToText translates a field error to more human readable
-func ValidationErrorToText(e *validator.FieldError) string {
+func ValidationErrorToText(inputField string, e *validator.FieldError) string {
 	switch e.Tag {
 	case "required":
-		return fmt.Sprintf("%s is required", e.Field)
+		return fmt.Sprintf("%s is required", inputField)
 	case "max":
-		return fmt.Sprintf("%s cannot be longer than %s", e.Field, e.Param)
+		return fmt.Sprintf("%s cannot be longer than %s", inputField, e.Param)
 	case "min":
-		return fmt.Sprintf("%s must be longer than %s", e.Field, e.Param)
+		return fmt.Sprintf("%s must be longer than %s", inputField, e.Param)
 	case "email":
 		return fmt.Sprintf("Invalid email format")
 	case "len":
-		return fmt.Sprintf("%s must be %s characters long", e.Field, e.Param)
+		return fmt.Sprintf("%s must be %s characters long", inputField, e.Param)
 	}
-	return fmt.Sprintf("%s is not valid", e.Field)
+	return fmt.Sprintf("%s is not valid", inputField)
 }
 
-// Errors collects all errors and returns them
-func Errors() gin.HandlerFunc {
+// ValidateErrors collects all errors from binding the Request to structs and returns if any are present
+func ValidateErrors() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Next()
 		// Only run if there are some errors to handle
@@ -47,10 +48,20 @@ func Errors() gin.HandlerFunc {
 						c.JSON(c.Writer.Status(), gin.H{"success": false, "message": e.Error()})
 					}
 				case gin.ErrorTypeBind:
-					errs := e.Err.(validator.ValidationErrors)
+					resource, _ := c.Get("resource")
+					errs, ok := e.Err.(validator.ValidationErrors)
+					if !ok {
+						c.JSON(http.StatusBadRequest, gin.H{"success": false, "message": "Please reevaluate your request parameters"})
+						return
+					}
 					errorMessages := []string{}
 					for _, err := range errs {
-						errorMessages = append(errorMessages, ValidationErrorToText(err))
+						inputField := err.Field
+						if resource != nil {
+							field, _ := reflect.TypeOf(resource).Elem().FieldByName(err.Field)
+							inputField = field.Tag.Get("json")
+						}
+						errorMessages = append(errorMessages, ValidationErrorToText(inputField, err))
 					}
 
 					// Make sure we maintain the preset response status

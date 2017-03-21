@@ -8,6 +8,7 @@ import (
 // HerokuProvision is for provisioning the Heroku Addon
 func HerokuProvision(c *gin.Context) {
 	var json resources.Provision
+	c.Set("resource", &json)
 	err := c.BindJSON(&json)
 	if err == nil {
 		Success("Addon provisioned successfully.", c)
