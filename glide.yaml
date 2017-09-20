@@ -5,3 +5,11 @@ import:
 - package: github.com/rubenv/sql-migrate
 - package: github.com/joho/godotenv
   version: ^1.1.0
+- package: github.com/kisielk/sqlstruct
+- package: github.com/jmoiron/sqlx
+- package: upper.io/db.v3
+  version: ^3.3.1
+- package: github.com/gin-contrib/sse
+- package: github.com/mattn/go-isatty
+  version: ^0.0.2
+- package: github.com/lib/pq

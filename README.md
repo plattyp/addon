@@ -8,7 +8,18 @@ Heroku gives a ton of documentation throughout their site, but I couldn't find a
 
 ## Assumptions
 
-  - Using a PostgreSQL database as a datastore
+  - Using a PostgreSQL database as a datastore (Install Postgres locally)
+
+## Setup dependencies
+
+    brew install glide
+    glide install
+
+## Creating DB / Running Migrations & Seeds
+
+    createdb addon
+    sql-migrate up
+    cat db/seeds/*.sql | psql addon
 
 ## Current Status
 

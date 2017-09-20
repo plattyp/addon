@@ -1,8 +1,10 @@
-hash: e2b4b4e7c41251bd1ad4ccceffc66221e88415f06b208e30805e97f758b14055
-updated: 2017-03-20T20:48:33.021188519-05:00
+hash: 7941df389f8820a93122e914efb184916ba9e569b3316faabfd2c32f77dc78b8
+updated: 2017-08-07T22:20:35.847373421-05:00
 imports:
+- name: github.com/gin-contrib/sse
+  version: 22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae
 - name: github.com/gin-gonic/gin
-  version: e2212d40c62a98b388a5eb48ecbdcf88534688ba
+  version: d459835d2b077e44f7c9b453505ee29881d5d12d
   subpackages:
   - binding
   - render
@@ -10,18 +12,24 @@ imports:
   version: 2402d76f3d41f928c7902a765dfc872356dd3aad
   subpackages:
   - proto
+- name: github.com/jmoiron/sqlx
+  version: 8ed836a8adb659e8492bcaa49e0880bb84075fe2
 - name: github.com/joho/godotenv
   version: 726cc8b906e3d31c70a9671c90a13716a8d3f50d
-- name: github.com/manucorporat/sse
-  version: ee05b128a739a0fb76c7ebd3ae4810c1de808d6d
+- name: github.com/kisielk/sqlstruct
+  version: 648daed35d49dac24a4bff253b190a80da3ab6a5
+- name: github.com/lib/pq
+  version: 2704adc878c21e1329f46f6e56a1c387d788ff94
+  subpackages:
+  - oid
 - name: github.com/mattn/go-isatty
-  version: 281032e84ae07510239465db46bf442aa44b953a
+  version: fc9e8d8ef48496124e79ae0df75490096eccf6fe
 - name: github.com/rubenv/sql-migrate
   version: a3e2963537993d229b6e257d10bd8bc640b06ce3
-- name: golang.org/x/net
-  version: f315505cf3349909cdf013ea56690da34e96a451
+- name: github.com/ugorji/go
+  version: 5efa3251c7f7d05e5d9704a69a984ec9f1386a40
   subpackages:
-  - context
+  - codec
 - name: golang.org/x/sys
   version: aaabbdc969c3935a2a7f61efac801e7163c73a2a
   subpackages:
@@ -30,4 +38,16 @@ imports:
   version: c193cecd124b5cc722d7ee5538e945bdb3348435
 - name: gopkg.in/yaml.v2
   version: a3f3340b5840cee44f372bddb5880fcbc419b46a
+- name: upper.io/db.v3
+  version: 36a3259461c7187121424f20bbaa67e6b6a89a28
+  subpackages:
+  - internal/cache
+  - internal/cache/hashstructure
+  - internal/immutable
+  - internal/sqladapter
+  - internal/sqladapter/compat
+  - internal/sqladapter/exql
+  - lib/reflectx
+  - lib/sqlbuilder
+  - postgresql
 testImports: []
