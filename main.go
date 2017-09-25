@@ -36,6 +36,7 @@ func main() {
 	}))
 
 	herokuAuthorized.POST("/resources", e.HerokuProvision)
+	herokuAuthorized.PUT("/resources/:id", e.HerokuChange)
 
 	// Generic 404
 	router.NoRoute(func(c *gin.Context) {

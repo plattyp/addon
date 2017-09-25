@@ -1,6 +1,6 @@
 package resources
 
-// User is the struct around the Users table
+// Plan is the struct around the Users table
 type Plan struct {
 	Resource
 	Code        string `db:"code"`

@@ -2,7 +2,7 @@
   "id": "custom-addon",
   "name": "CustomAddon",
   "api": {
-    "config_vars": [ "CUSTOM_ADDON_URL" ],
+    "config_vars": [],
     "requires": [],
     "regions": [ "us", "eu" ],
     "password": "85b5565db27efac4e88ebe9ba990982d",

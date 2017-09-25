@@ -2,7 +2,7 @@
 -- +migrate Up
 CREATE TABLE public.apps (
 	"id" serial PRIMARY KEY,
-	"name" varchar NOT NULL COLLATE "default",
+	"name" varchar NOT NULL DEFAULT 'app-' || generate_object_id() COLLATE "default",
 	"user_id" int NOT NULL,
 	"created_at" timestamp(6) WITH TIME ZONE NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
 	"updated_at" timestamp(6) WITH TIME ZONE NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),

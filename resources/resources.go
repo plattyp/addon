@@ -15,10 +15,10 @@ type Resourcer interface {
 // Resource contains all basic functionality that all database models share
 type Resource struct {
 	Resourcer
-	ID        uint        `db:"id,omitempty"`
-	CreatedAt time.Time   `db:"created_at"`
-	UpdatedAt time.Time   `db:"updated_at"`
-	DeletedAt pq.NullTime `db:"deleted_at"`
+	ID        int64       `db:"id,omitempty"`
+	CreatedAt time.Time   `db:"created_at,omitempty"`
+	UpdatedAt time.Time   `db:"updated_at,omitempty"`
+	DeletedAt pq.NullTime `db:"deleted_at,omitempty"`
 }
 
 // GetValues returns back a map of interfaces of the value of the resource
