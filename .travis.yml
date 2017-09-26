@@ -1,0 +1,17 @@
+dist: trusty
+cache: false
+language: go
+go: 1.8.3
+addons:
+  postgresql: '9.6'
+env:
+  global:
+  - TRAVIS=1
+  - DATABASE_URL=postgresql://postgres@localhost:5432/travis?sslmode=disable
+install:
+- go get github.com/Masterminds/glide
+- glide update
+before_script:
+- psql -c 'SELECT version();' -U postgres
+- gem install kensa
+script: make
