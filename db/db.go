@@ -10,7 +10,7 @@ type Databaser struct {
 	Conn sqlbuilder.Database
 }
 
-// NewDatabaer returns back a new instance of Databaser
+// NewDatabaser returns back a new instance of Databaser
 func NewDatabaser(dbURL string) (*Databaser, error) {
 	settings, err := postgresql.ParseURL(dbURL)
 	if err != nil {

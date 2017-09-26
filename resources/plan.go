@@ -1,6 +1,6 @@
 package resources
 
-// Plan is the struct around the Users table
+// Plan is the struct around the Plans table
 type Plan struct {
 	Resource
 	Code        string `db:"code"`
@@ -9,6 +9,7 @@ type Plan struct {
 	Ordinal     int    `db:"ordinal"`
 }
 
+// GetValues returns back a map of values about the Plan resource
 func (plan Plan) GetValues() map[string]interface{} {
 	return map[string]interface{}{
 		"id":          plan.ID,
@@ -22,6 +23,7 @@ func (plan Plan) GetValues() map[string]interface{} {
 	}
 }
 
+// Table returns the table associated with the resource
 func (plan Plan) Table() string {
 	return "plans"
 }

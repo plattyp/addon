@@ -21,6 +21,14 @@ Heroku gives a ton of documentation throughout their site, but I couldn't find a
     sql-migrate up
     cat db/seeds/*.sql | psql addon
 
+## Building It
+
+    make
+
+## Running It
+
+    make run
+
 ## Current Status
 
 This is a WIP. Will update with specs and more installation instructions once it is complete.

@@ -11,6 +11,7 @@ type User struct {
 	Region     sql.NullString `db:"region,omitempty"`
 }
 
+// GetValues returns back a map of values about the User resource
 func (user User) GetValues() map[string]interface{} {
 	return map[string]interface{}{
 		"id":          user.ID,
@@ -24,6 +25,7 @@ func (user User) GetValues() map[string]interface{} {
 	}
 }
 
+// Table returns the table associated with the resource
 func (user User) Table() string {
 	return "users"
 }

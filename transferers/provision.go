@@ -8,6 +8,7 @@ type Provision struct {
 	CallbackURL string `form:"callback_url" json:"callback_url"`
 }
 
+// GetValues returns back a map of values about the Provision transferer
 func (p Provision) GetValues() map[string]interface{} {
 	return map[string]interface{}{
 		"heroku_id":    p.HerokuID,

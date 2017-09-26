@@ -42,7 +42,7 @@ func Success(message string, c *gin.Context) {
 	)
 }
 
-// SuccessUpdate returns generic success message
+// SuccessOK returns generic success message with an OK status
 func SuccessOK(message string, c *gin.Context) {
 	c.JSON(
 		http.StatusOK,
@@ -75,7 +75,7 @@ func ValidationError(f FieldError, c *gin.Context) {
 	)
 }
 
-// HandleErrors formats binding errors to a structured slice of FieldErrors
+// HandleError formats binding errors to a single FieldError
 func HandleError(err error) FieldError {
 	var error FieldError
 	errs, ok := err.(validator.ValidationErrors)

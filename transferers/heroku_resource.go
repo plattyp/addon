@@ -2,13 +2,14 @@ package transferers
 
 // HerokuResource is the binding for responding via the Heroku endpoint
 type HerokuResource struct {
-	Id      int64  `json:"id"`
+	ID      int64  `json:"id"`
 	Message string `json:"message"`
 }
 
+// NewHerokuResource returns back a HerokuResource
 func NewHerokuResource(id int64, message string) *HerokuResource {
 	return &HerokuResource{
-		Id:      id,
+		ID:      id,
 		Message: message,
 	}
 }

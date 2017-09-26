@@ -1,7 +1,6 @@
 package endpoints
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -24,8 +23,6 @@ func (e *Endpointer) HerokuChange(c *gin.Context) {
 			Error(iErr.Error(), c)
 			return
 		}
-
-		fmt.Println(json.GetValues())
 
 		// Lookup Plan via Code
 		p := accessor.PlanDataAccessor{Databaser: e.databaser}

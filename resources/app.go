@@ -1,12 +1,13 @@
 package resources
 
-// User is the struct around the Users table
+// App is the struct around the Apps table
 type App struct {
 	Resource
 	Name   string `db:"name,omitempty"`
 	UserID int64  `db:"user_id"`
 }
 
+// GetValues returns back a map of values about the App resource
 func (a App) GetValues() map[string]interface{} {
 	return map[string]interface{}{
 		"id":         a.ID,
@@ -18,6 +19,7 @@ func (a App) GetValues() map[string]interface{} {
 	}
 }
 
+// Table returns the table associated with the resource
 func (a App) Table() string {
 	return "apps"
 }
