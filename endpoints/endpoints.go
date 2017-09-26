@@ -42,6 +42,17 @@ func Success(message string, c *gin.Context) {
 	)
 }
 
+// SuccessUpdate returns generic success message
+func SuccessOK(message string, c *gin.Context) {
+	c.JSON(
+		http.StatusOK,
+		gin.H{
+			"status":  true,
+			"message": message,
+		},
+	)
+}
+
 // Error returns generic error message
 func Error(e string, c *gin.Context) {
 	c.JSON(

@@ -2,7 +2,9 @@ package accessor
 
 import (
 	"errors"
+	"time"
 
+	"github.com/lib/pq"
 	"github.com/plattyp/addon/db"
 	"github.com/plattyp/addon/resources"
 	upper "upper.io/db.v3"
@@ -11,7 +13,8 @@ import (
 // AppAccessor is used to fetch plans
 type AppAccessor interface {
 	CreateApp(userID int64) (*resources.App, error)
-	FetchApp(ID int64) (*resources.App, error)
+	FetchApp(id int64) (*resources.App, error)
+	DeleteAppsByUser(userID int64) error
 }
 
 const appTableName = "apps"
@@ -27,7 +30,7 @@ func (a AppDataAccessor) CreateApp(userID int64) (*resources.App, error) {
 		UserID: userID,
 	}
 
-	result, err := a.appsTable().Insert(app)
+	result, err := a.appsTable().Insert(&app)
 	if err != nil {
 		return nil, err
 	}
@@ -53,6 +56,19 @@ func (a AppDataAccessor) FetchApp(id int64) (*resources.App, error) {
 	}
 
 	return &app, nil
+}
+
+// DeleteAppsByUser deletes the associated apps of a user
+func (a AppDataAccessor) DeleteAppsByUser(id int64) error {
+	deletedAt := map[string]interface{}{
+		"deleted_at": pq.NullTime{Time: time.Now().UTC(), Valid: true},
+	}
+	err := a.appsTable().Find(upper.Cond{"id": id}).Update(&deletedAt)
+	if err == nil {
+		return nil
+	}
+
+	return err
 }
 
 // appsTable returns back a collection

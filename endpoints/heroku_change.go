@@ -20,12 +20,12 @@ func (e *Endpointer) HerokuChange(c *gin.Context) {
 	if err == nil {
 		// Convert User ID To Usable Int64
 		id, iErr := strconv.ParseInt(userID, 10, 64)
-		if err != nil {
+		if iErr != nil {
 			Error(iErr.Error(), c)
 			return
 		}
 
-		fmt.Println(json)
+		fmt.Println(json.GetValues())
 
 		// Lookup Plan via Code
 		p := accessor.PlanDataAccessor{Databaser: e.databaser}
@@ -43,9 +43,10 @@ func (e *Endpointer) HerokuChange(c *gin.Context) {
 			return
 		}
 
-		Success("Successfully changed plans", c)
+		SuccessOK("Successfully changed plans", c)
 	} else {
 		validationErr := HandleError(err)
+		println(validationErr.PrintMessage())
 		ValidationError(validationErr, c)
 	}
 }

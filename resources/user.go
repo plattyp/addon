@@ -5,10 +5,10 @@ import "database/sql"
 // User is the struct around the Users table
 type User struct {
 	Resource
-	Email      string         `db:"email"`
-	PlanID     int64          `db:"plan_id"`
-	HerokuUUID sql.NullString `db:"heroku_uuid"`
-	Region     sql.NullString `db:"region"`
+	Email      sql.NullString `db:"email,omitempty"`
+	PlanID     int64          `db:"plan_id,omitempty"`
+	HerokuUUID sql.NullString `db:"heroku_uuid,omitempty"`
+	Region     sql.NullString `db:"region,omitempty"`
 }
 
 func (user User) GetValues() map[string]interface{} {

@@ -2,7 +2,7 @@
 -- +migrate Up
 CREATE TABLE public.users (
 	"id" serial PRIMARY KEY,
-	"email" varchar(255) NOT NULL COLLATE "default",
+	"email" varchar(255) COLLATE "default",
 	"encrypted_password" text COLLATE "default",
 	"password_salt" text COLLATE "default",
 	"plan_id" int NOT NULL,
