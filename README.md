@@ -13,7 +13,6 @@ Heroku gives a ton of documentation throughout their site, but I couldn't find a
 ## Setup dependencies
 
     brew install glide
-    glide install
 
 ## Creating DB / Running Migrations & Seeds
 
