@@ -1,4 +1,4 @@
-# Addon (WIP)
+# Addon (WIP) [![Code Climate](https://codeclimate.com/github/plattyp/addon/badges/gpa.svg)](https://codeclimate.com/github/plattyp/addon)
 
 An example Heroku addon written in Golang
 
