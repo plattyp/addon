@@ -1,4 +1,4 @@
-# Addon (WIP) [![Code Climate](https://codeclimate.com/github/plattyp/addon/badges/gpa.svg)](https://codeclimate.com/github/plattyp/addon) [![Build Status](https://travis-ci.org/plattyp/addon.svg?branch=add-travis)](https://travis-ci.org/plattyp/addon)
+# Heroku Addon Example [![Code Climate](https://codeclimate.com/github/plattyp/addon/badges/gpa.svg)](https://codeclimate.com/github/plattyp/addon) [![Build Status](https://travis-ci.org/plattyp/addon.svg?branch=add-travis)](https://travis-ci.org/plattyp/addon)
 
 An example Heroku addon written in Golang
 
@@ -10,6 +10,10 @@ Heroku gives a ton of documentation throughout their site, but I couldn't find a
 
   - Using a PostgreSQL database as a datastore (Install Postgres locally)
   - The ENVs in this are just used as an example, real world you'd probably use a vault or store them only on the deployed environment
+
+## Structure
+
+There are 3 tables created as part of this: `plans`, `users`, and `apps`. The assumption is that a User can have many apps or in Heroku terms this would be a single Heroku user could SSO once into this addon application and have access to their various Heroku associated apps.
 
 ## Setup dependencies
 
@@ -27,10 +31,6 @@ Heroku gives a ton of documentation throughout their site, but I couldn't find a
 ## Running It (exposed on port 5000 by default)
 
     make run
-
-## Structure
-
-There are 3 tables created as part of this: `plans`, `users`, and `apps`. The assumption is that a User can have many apps or in Heroku terms this would be a single Heroku user could SSO once into this addon application and have access to their various Heroku associated apps.
 
 ## Test It
 
