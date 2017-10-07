@@ -10,7 +10,7 @@ env:
   - DATABASE_URL=postgresql://postgres@localhost:5432/travis?sslmode=disable
 install:
 - go get github.com/Masterminds/glide
-- go get github.com/rubenv/sql-migrate
+- go install github.com/rubenv/sql-migrate/...
 - glide update
 before_script:
 - psql -c 'SELECT version();' -U postgres
