@@ -15,6 +15,9 @@ before_script:
 - psql -c 'SELECT version();' -U postgres
 - cat db/test_seeds/*.sql | psql travis
 - gem install kensa
+- gem install foreman
 script:
 - make
 - foreman start
+- kensa test
+- kensa test sso 123
