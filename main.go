@@ -20,6 +20,7 @@ func main() {
 	router := gin.Default()
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
+	router.LoadHTMLGlob("templates/*")
 	router.GET("/", endpoints.Index)
 
 	// Create a DB Connection
@@ -38,6 +39,9 @@ func main() {
 	herokuAuthorized.POST("/resources", e.HerokuProvision)
 	herokuAuthorized.PUT("/resources/:id", e.HerokuChange)
 	herokuAuthorized.DELETE("/resources/:id", e.HerokuDelete)
+
+	herokoUnauthorized := router.Group("/heroku")
+	herokoUnauthorized.POST("/sso", e.HerokuSSO)
 
 	// Generic 404
 	router.NoRoute(func(c *gin.Context) {

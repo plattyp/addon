@@ -13,5 +13,8 @@ install:
 - glide update
 before_script:
 - psql -c 'SELECT version();' -U postgres
+- cat db/test_seeds/*.sql | psql travis
 - gem install kensa
-script: make
+script:
+- make
+- foreman start

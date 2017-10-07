@@ -18,7 +18,6 @@ Heroku gives a ton of documentation throughout their site, but I couldn't find a
 
     createdb addon
     sql-migrate up
-    cat db/seeds/*.sql | psql addon
 
 ## Building It
 
