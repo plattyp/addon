@@ -9,11 +9,11 @@
     "sso_salt": "f33dbf8a60484995c8d47d1f0115ee8a",
     "production": {
       "base_url": "https://custom-addon.com/heroku/resources",
-      "sso_url": "https://custom-addon.com/sso/login"
+      "sso_url": "https://custom-addon.com/heroku/sso"
     },
     "test": {
       "base_url": "http://localhost:5000/heroku/resources",
-      "sso_url": "http://localhost:5000/sso/login"
+      "sso_url": "http://localhost:5000/heroku/sso"
     }
   }
 }

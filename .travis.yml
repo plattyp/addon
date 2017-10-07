@@ -6,12 +6,25 @@ addons:
   postgresql: '9.6'
 env:
   global:
-  - TRAVIS=1
+  - ADDON_ENVIRONMENT=travis
   - DATABASE_URL=postgresql://postgres@localhost:5432/travis?sslmode=disable
 install:
 - go get github.com/Masterminds/glide
-- glide update
+- go get github.com/rubenv/sql-migrate/...
 before_script:
 - psql -c 'SELECT version();' -U postgres
+- sql-migrate up -env="travis"
+- cat db/test_seeds/*.sql | psql travis
 - gem install kensa
-script: make
+- gem install foreman
+script:
+- make
+- perl -i -pe "s/^DATABASE_URL=.+$//g" .env
+- |
+  foreman start &> /tmp/addon.log & API_PID=$!
+- |
+- kensa test
+- kensa test sso 123
+after_script:
+- kill -3 $API_PID
+- cat /tmp/addon.log

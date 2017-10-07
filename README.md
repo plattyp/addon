@@ -9,6 +9,7 @@ Heroku gives a ton of documentation throughout their site, but I couldn't find a
 ## Assumptions
 
   - Using a PostgreSQL database as a datastore (Install Postgres locally)
+  - The ENVs in this are just used as an example, real world you'd probably use a vault or store them only on the deployed environment
 
 ## Setup dependencies
 
@@ -18,16 +19,22 @@ Heroku gives a ton of documentation throughout their site, but I couldn't find a
 
     createdb addon
     sql-migrate up
-    cat db/seeds/*.sql | psql addon
 
 ## Building It
 
     make
 
-## Running It
+## Running It (exposed on port 5000 by default)
 
     make run
 
-## Current Status
+## Structure
 
-This is a WIP. Will update with specs and more installation instructions once it is complete.
+There are 3 tables created as part of this: `plans`, `users`, and `apps`. The assumption is that a User can have many apps or in Heroku terms this would be a single Heroku user could SSO once into this addon application and have access to their various Heroku associated apps.
+
+## Test It
+
+This is a complete example. I still have some additional tests to right, but it currently passes the Addon spec. This has been tested against the [kensa gem](https://github.com/heroku/kensa). Travis executes the following commands after inserting the test data.
+
+    kensa test
+    kensa test sso 123
