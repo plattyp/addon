@@ -11,7 +11,6 @@ env:
 install:
 - go get github.com/Masterminds/glide
 - go get github.com/rubenv/sql-migrate/...
-- glide update
 before_script:
 - psql -c 'SELECT version();' -U postgres
 - sql-migrate up -env="travis"

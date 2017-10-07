@@ -1,6 +1,7 @@
 package endpoints
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -15,6 +16,9 @@ func (e *Endpointer) HerokuProvision(c *gin.Context) {
 
 	err := c.ShouldBindWith(&json, binding.JSON)
 	if err == nil {
+
+		fmt.Println(json.GetValues())
+
 		// Lookup Plan via Code
 		p := accessor.PlanDataAccessor{Databaser: e.databaser}
 		plan, lErr := p.GetPlanByCode(json.Plan)
