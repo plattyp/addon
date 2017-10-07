@@ -12,9 +12,14 @@ import (
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
+	addonEnv := os.Getenv("ADDON_ENVIRONMENT")
+
+	// Load from .env if development or travis
+	if addonEnv == "" || addonEnv == "development" || addonEnv == "travis" {
+		err := godotenv.Load()
+		if err != nil {
+			log.Fatal("Error loading .env file")
+		}
 	}
 
 	router := gin.Default()
