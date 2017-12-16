@@ -77,12 +77,7 @@ func (u UserDataAccessor) FetchUser(id int64) (*resources.User, error) {
 
 // DeleteUser deletes the associated user
 func (u UserDataAccessor) DeleteUser(id int64) error {
-	err := deleteWithCondition(u.usersTable(), upper.Cond{"id": id})
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return deleteWithCondition(u.usersTable(), upper.Cond{"id": id})
 }
 
 // usersTable returns back a collection

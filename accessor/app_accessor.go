@@ -58,12 +58,7 @@ func (a AppDataAccessor) FetchApp(id int64) (*resources.App, error) {
 
 // DeleteAppsByUser deletes the associated apps of a user
 func (a AppDataAccessor) DeleteAppsByUser(id int64) error {
-	err := deleteWithCondition(a.appsTable(), upper.Cond{"user_id": id})
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return deleteWithCondition(a.appsTable(), upper.Cond{"user_id": id})
 }
 
 // appsTable returns back a collection
