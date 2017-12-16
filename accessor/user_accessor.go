@@ -3,9 +3,7 @@ package accessor
 import (
 	"database/sql"
 	"errors"
-	"time"
 
-	"github.com/lib/pq"
 	"github.com/plattyp/addon/db"
 	"github.com/plattyp/addon/resources"
 	upper "upper.io/db.v3"
@@ -79,9 +77,7 @@ func (u UserDataAccessor) FetchUser(id int64) (*resources.User, error) {
 
 // DeleteUser deletes the associated user
 func (u UserDataAccessor) DeleteUser(id int64) error {
-	deletedAt := map[string]interface{}{
-		"deleted_at": pq.NullTime{Time: time.Now().UTC(), Valid: true},
-	}
+	deletedAt := getDeletedAtField()
 	err := u.usersTable().Find(upper.Cond{"id": id}).Update(&deletedAt)
 	if err == nil {
 		return nil

@@ -2,9 +2,7 @@ package accessor
 
 import (
 	"errors"
-	"time"
 
-	"github.com/lib/pq"
 	"github.com/plattyp/addon/db"
 	"github.com/plattyp/addon/resources"
 	upper "upper.io/db.v3"
@@ -60,9 +58,7 @@ func (a AppDataAccessor) FetchApp(id int64) (*resources.App, error) {
 
 // DeleteAppsByUser deletes the associated apps of a user
 func (a AppDataAccessor) DeleteAppsByUser(id int64) error {
-	deletedAt := map[string]interface{}{
-		"deleted_at": pq.NullTime{Time: time.Now().UTC(), Valid: true},
-	}
+	deletedAt := getDeletedAtField()
 	err := a.appsTable().Find(upper.Cond{"id": id}).Update(&deletedAt)
 	if err == nil {
 		return nil

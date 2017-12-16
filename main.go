@@ -12,6 +12,20 @@ import (
 )
 
 func main() {
+	// Create a DB Connection
+	dbConn, err := db.NewDatabaser(os.Getenv("DATABASE_URL"))
+	if err != nil {
+		log.Fatal("NewDatabaser: ", err)
+	}
+
+	// Create an Endpointer
+	e := endpoints.NewEndpointer(dbConn)
+
+	router := setupRouter(e)
+	router.Run(":5000")
+}
+
+func loadEnvironment() {
 	addonEnv := os.Getenv("ADDON_ENVIRONMENT")
 
 	// Load from .env if development or travis
@@ -21,21 +35,15 @@ func main() {
 			log.Fatal("Error loading .env file")
 		}
 	}
+}
 
+func setupRouter(e *endpoints.Endpointer) *gin.Engine {
 	router := gin.Default()
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 	router.LoadHTMLGlob("templates/*")
+
 	router.GET("/", endpoints.Index)
-
-	// Create a DB Connection
-	dbConn, err := db.NewDatabaser(os.Getenv("DATABASE_URL"))
-	if err != nil {
-		log.Fatal("NewDatabaser: ", err)
-	}
-
-	// Create an Endpointer
-	e := endpoints.NewEndpointer(dbConn)
 
 	herokuAuthorized := router.Group("/heroku", gin.BasicAuth(gin.Accounts{
 		os.Getenv("HEROKU_USERNAME"): os.Getenv("HEROKU_PASSWORD"),
@@ -53,5 +61,5 @@ func main() {
 		c.JSON(404, gin.H{"status": false, "message": "Resource not found"})
 	})
 
-	router.Run(":5000")
+	return router
 }
