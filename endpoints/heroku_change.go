@@ -4,7 +4,6 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
 	"github.com/plattyp/addon/accessor"
 	"github.com/plattyp/addon/transferers"
 )
@@ -13,7 +12,7 @@ import (
 func (e *Endpointer) HerokuChange(c *gin.Context) {
 	var json transferers.Provision
 
-	err := c.ShouldBindWith(&json, binding.JSON)
+	err := BindJSONToTransferer(&json, c)
 	if err == nil {
 		successHerokuChange(&json, e, c)
 	} else {

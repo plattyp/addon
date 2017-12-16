@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
 	"github.com/plattyp/addon/accessor"
 	"github.com/plattyp/addon/services"
 	"github.com/plattyp/addon/transferers"
@@ -15,7 +14,7 @@ import (
 func (e *Endpointer) HerokuSSO(c *gin.Context) {
 	var json transferers.SSO
 
-	err := c.ShouldBindWith(&json, binding.FormPost)
+	err := BindFormToTransferer(&json, c)
 	if err == nil {
 		successHerokuSSO(&json, e, c)
 	} else {

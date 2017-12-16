@@ -7,7 +7,9 @@ import (
 	validator "gopkg.in/go-playground/validator.v8"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
 	"github.com/plattyp/addon/db"
+	"github.com/plattyp/addon/transferers"
 )
 
 // Endpointer holds all context for the endpoint to use
@@ -24,6 +26,16 @@ type FieldError struct {
 // NewEndpointer returns a new endpointer to be used
 func NewEndpointer(d *db.Databaser) *Endpointer {
 	return &Endpointer{databaser: d}
+}
+
+// BindJSONToTransferer binds the JSON from the request to the Transfer struct
+func BindJSONToTransferer(t transferers.Transferer, c *gin.Context) error {
+	return c.ShouldBindWith(t, binding.JSON)
+}
+
+// BindFormToTransferer binds the Form from the request to the Transfer struct
+func BindFormToTransferer(t transferers.Transferer, c *gin.Context) error {
+	return c.ShouldBindWith(t, binding.FormPost)
 }
 
 // PrintMessage returns back the structured message
