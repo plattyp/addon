@@ -17,8 +17,7 @@ func (e *Endpointer) HerokuProvision(c *gin.Context) {
 	if err == nil {
 		successHerokuProvision(&json, e, c)
 	} else {
-		validationErr := HandleError(err)
-		ValidationError(validationErr, c)
+		processError(err, c)
 	}
 }
 

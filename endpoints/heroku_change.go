@@ -17,9 +17,7 @@ func (e *Endpointer) HerokuChange(c *gin.Context) {
 	if err == nil {
 		successHerokuChange(&json, e, c)
 	} else {
-		validationErr := HandleError(err)
-		println(validationErr.PrintMessage())
-		ValidationError(validationErr, c)
+		processError(err, c)
 	}
 }
 

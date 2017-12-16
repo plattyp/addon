@@ -95,3 +95,8 @@ func HandleError(err error) FieldError {
 
 	return error
 }
+
+func processError(err error, c *gin.Context) {
+	validationErr := HandleError(err)
+	ValidationError(validationErr, c)
+}

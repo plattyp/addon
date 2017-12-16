@@ -19,8 +19,7 @@ func (e *Endpointer) HerokuSSO(c *gin.Context) {
 	if err == nil {
 		successHerokuSSO(&json, e, c)
 	} else {
-		validationErr := HandleError(err)
-		ValidationError(validationErr, c)
+		processError(err, c)
 	}
 }
 

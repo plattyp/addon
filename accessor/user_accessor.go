@@ -77,13 +77,12 @@ func (u UserDataAccessor) FetchUser(id int64) (*resources.User, error) {
 
 // DeleteUser deletes the associated user
 func (u UserDataAccessor) DeleteUser(id int64) error {
-	deletedAt := getDeletedAtField()
-	err := u.usersTable().Find(upper.Cond{"id": id}).Update(&deletedAt)
-	if err == nil {
-		return nil
+	err := deleteWithCondition(u.usersTable(), upper.Cond{"id": id})
+	if err != nil {
+		return err
 	}
 
-	return err
+	return nil
 }
 
 // usersTable returns back a collection
