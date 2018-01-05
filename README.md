@@ -1,4 +1,4 @@
-# Heroku Addon Example [![Build Status](https://travis-ci.org/plattyp/addon.svg?branch=add-travis)](https://travis-ci.org/plattyp/addon)
+# Heroku Addon Example [![Code Climate](https://codeclimate.com/github/plattyp/addon/badges/gpa.svg)](https://codeclimate.com/github/plattyp/addon) [![Build Status](https://travis-ci.org/plattyp/addon.svg?branch=add-travis)](https://travis-ci.org/plattyp/addon)
 
 An example Heroku addon written in Golang
 
