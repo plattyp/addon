@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cat db/test_seeds/*.sql | psql addon
+kensa test
+kensa test sso 123
